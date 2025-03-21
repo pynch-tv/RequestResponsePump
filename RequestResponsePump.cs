@@ -1,4 +1,4 @@
-using System.Diagnostics;
+//using System.Diagnostics;
 
 namespace Pynch.Tools;
 
@@ -30,8 +30,6 @@ public abstract class RequestResponsePump<TRequest, TResponse>
             Stopwatch stopwatch = new();
             stopwatch.Start();
 
-            //Debug.WriteLine($"SendAsync: {req}");
-
             var promise = new TaskCompletionSource<TResponse>();
 
             ReceivedResponse += Handler;
@@ -47,7 +45,6 @@ public abstract class RequestResponsePump<TRequest, TResponse>
             }
 
             stopwatch.Stop();
-            //Debug.WriteLine($"Sony9Pin roundtrip: {stopwatch.ElapsedMilliseconds} ms");
 
             return promise.Task;
 
@@ -69,8 +66,6 @@ public abstract class RequestResponsePump<TRequest, TResponse>
     /// </summary>
     protected virtual void Received(TResponse res)
     {
-        //Debug.WriteLine($"Response: {res?.ToString()}");
-
         RaiseResponse(res);
     }
 
